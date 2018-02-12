@@ -1,15 +1,15 @@
-# Yowsup 2 [![Build Status](https://travis-ci.org/tgalal/yowsup.svg?branch=master)](https://travis-ci.org/tgalal/yowsup)
+# Yowsup 2 [![Build Status](https://travis-ci.org/tgalal/yowsup.svg?branch=master)](https://travis-ci.org/tgalal/yowsup) [![Join the chat at https://gitter.im/tgalal/yowsup](https://badges.gitter.im/tgalal/yowsup.svg)](https://gitter.im/tgalal/yowsup?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z9KKEUVYEY6BN" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" /></a>
 
-## Updates (December 14, 2015)
-Yowsup v2.4.48 is out, See [release notes](https://github.com/tgalal/yowsup/releases/tag/v2.4.48)
+## Updates (December 30, 2017)
+Yowsup v2.5.7 is out, See [release notes](https://github.com/tgalal/yowsup/releases/tag/v2.5.7)
 
 ==========================================================
 
 ## Yowsup opened WhatsApp service under platforms!
 
-Yowsup is a python library that enables you build application which use WhatsApp service. Yowsup has been used to create an unofficial WhatsApp client Nokia N9 through the Wazapp project which was in use by 200K + users as well as another fully featured unofficial client for Blackberry 10
+Yowsup is a Python library that enables you to build applications which use the WhatsApp service. Yowsup has been used to create two clients: 1) An unofficial WhatsApp client Nokia N9 through the Wazapp project which was in use by more than 200K users; 2) Another fully featured unofficial client for Blackberry 10.
 
 ## Quickstart
 
@@ -25,7 +25,7 @@ Yowsup is a python library that enables you build application which use WhatsApp
  - Required python packages for end-to-end encryption: protobuf, pycrypto, python-axolotl-curve25519
  - Required python packages for yowsup-cli: argparse, readline (or pyreadline for windows), pillow (for sending images)
 
-Install using setup.py to pull all python dependencies, or using pip:
+Install using setup.py to pull all Python dependencies, or pip:
 
 ```
 pip install yowsup2
@@ -33,11 +33,17 @@ pip install yowsup2
 
 ### Linux
 
-You need to have installed python headers (from probably python-dev package) and ncurses-dev, then run
+You need to have installed Python headers (probably from python-dev package) and ncurses-dev, then run
 ```
 python setup.py install
 ```
 Because of a bug with python-dateutil package you might get permission error for some dateutil file called requires.txt when you use yowsup (see [this bug report](https://bugs.launchpad.net/dateutil/+bug/1243202)) to fix you'll need to chmod 644 that file.
+
+### FreeBSD (*BSD)
+You need to have installed: py27-pip-7.1.2(+), py27-sqlite3-2.7.11_7(+), then run
+```
+pip install yowsup2
+```
 
 ### Mac
 ```

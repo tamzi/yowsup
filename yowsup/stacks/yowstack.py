@@ -20,7 +20,7 @@ from yowsup.layers.protocol_chatstate          import YowChatstateProtocolLayer
 from yowsup.layers.protocol_privacy            import YowPrivacyProtocolLayer
 from yowsup.layers.protocol_profiles           import YowProfilesProtocolLayer
 from yowsup.layers.protocol_calls import YowCallsProtocolLayer
-from yowsup import env
+from yowsup.env import YowsupEnv
 from yowsup.common.constants import YowConstants
 import inspect
 try:
@@ -46,6 +46,7 @@ class YowStackBuilder(object):
 
     def setProp(self, key, value):
         self._props[key] = value
+        return self
 
     def pushDefaultLayers(self, axolotl = False):
         defaultLayers = YowStackBuilder.getDefaultLayers(axolotl)
@@ -70,8 +71,9 @@ class YowStackBuilder(object):
 
         allLayers = coreLayers
         if axolotl:
-            from yowsup.layers.axolotl import YowAxolotlLayer
-            allLayers += (YowAxolotlLayer,)
+            from yowsup.layers.axolotl import AxolotlSendLayer, AxolotlControlLayer, AxolotlReceivelayer
+            allLayers += (AxolotlControlLayer,)
+            allLayers += (YowParallelLayer((AxolotlSendLayer, AxolotlReceivelayer)),)
 
         allLayers += (YowParallelLayer(protocolLayers),)
 
@@ -131,7 +133,7 @@ class YowStack(object):
 
         self.setProp(YowNetworkLayer.PROP_ENDPOINT, YowConstants.ENDPOINTS[random.randint(0,len(YowConstants.ENDPOINTS)-1)])
         self.setProp(YowCoderLayer.PROP_DOMAIN, YowConstants.DOMAIN)
-        self.setProp(YowCoderLayer.PROP_RESOURCE, env.CURRENT_ENV.getResource())
+        self.setProp(YowCoderLayer.PROP_RESOURCE, YowsupEnv.getCurrent().getResource())
         self._construct()
 
 
